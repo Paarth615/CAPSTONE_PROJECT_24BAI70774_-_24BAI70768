@@ -1,5 +1,6 @@
 package com.lifelink.dto;
 
+import com.lifelink.dto.UserDtos.UserDto;
 import com.lifelink.model.BloodGroup;
 import com.lifelink.model.Role;
 import jakarta.validation.constraints.*;

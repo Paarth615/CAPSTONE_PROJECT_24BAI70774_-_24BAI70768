@@ -25,7 +25,7 @@ of 100, and alerts the best matches immediately.
 ## 2. Tech stack
 
 - **Front-end:** React 18, Vite, React Router, Axios (plain CSS, no UI framework)
-- **Back-end:** Java 17, Spring Boot 3.4 (Web, Data JPA, Security, Validation, Actuator), JJWT
+- **Back-end:** Java 25 (LTS), Spring Boot 3.5 (Web, Data JPA, Security, Validation, Actuator), JJWT
 - **Database:** H2 file database locally (zero setup), PostgreSQL in production
 - **Tests:** JUnit 5, Spring Boot Test, MockMvc (full workflow test through the real security chain)
 - **Deploy:** Docker (API), static hosting (React), `render.yaml` blueprint included
@@ -74,7 +74,7 @@ Code: `MatchingService.java`, compatibility rule: `BloodGroup.canDonateTo`.
 
 ## 5. Run it locally in VS Code
 
-**Prerequisites:** JDK 17+, Maven 3.9+, Node 18+ (check with `java -version`, `mvn -v`, `node -v`).
+**Prerequisites:** JDK 25+, Maven 3.9+, Node 18+ (check with `java -version`, `mvn -v`, `node -v`).
 Open the `lifelink` folder in VS Code and accept the recommended extensions.
 
 **Terminal 1: back-end** (http://localhost:8080)

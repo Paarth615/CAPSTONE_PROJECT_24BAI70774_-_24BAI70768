@@ -3,8 +3,11 @@ package com.lifelink.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * The eight ABO/Rh blood groups. JSON uses the human label ("A+", "O-"),
@@ -32,11 +35,21 @@ public enum BloodGroup {
         if (raw == null) {
             throw new IllegalArgumentException("Blood group is required");
         }
-        String s = raw.trim().toUpperCase();
-        // A '+' sent unencoded in a query string arrives as a space ("A+" -> "A ")
-        if (!s.endsWith("+") && !s.endsWith("-") && raw.endsWith(" ")) {
-            s = s + "+";
+
+        String decoded = raw.stripLeading();
+        try {
+            decoded = URLDecoder.decode(decoded, StandardCharsets.UTF_8);
+        } catch (IllegalArgumentException ignored) {
+            // Some callers pass a plain value; leave it as-is.
         }
+
+        decoded = decoded.stripLeading();
+        if (decoded.endsWith(" ")) {
+            decoded = decoded.stripTrailing() + "+";
+        }
+
+        String s = decoded.toUpperCase(Locale.ROOT);
+
         for (BloodGroup g : values()) {
             if (g.label.equals(s) || g.name().equals(s)) {
                 return g;
